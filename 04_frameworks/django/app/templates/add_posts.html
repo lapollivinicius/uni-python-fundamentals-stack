@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+    {% block title %}
+        Add post
+    {% endblock %}
+    {% block content %}
+        <div id="add-form">
+            <h2>Add your own post</h2>
+            <form action="" method="POST">
+                <label for="title">
+                    <p>Title Post</p>
+                    <input type="text" name="title" id="title" placeholder="GTA VI">
+                </label>
+                <label for="description">
+                    <p>Description Post</p>
+                    <textarea rows="5" cols="20" maxlength="100" wrap="hard" name="description" id="description" placeholder="GTA VI is great"></textarea>
+                </label>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    {% endblock %}
+
