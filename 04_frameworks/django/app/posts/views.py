@@ -1,21 +1,14 @@
 from django.shortcuts import render
+from . import models
 
-# Create your views here.
 def Posts(request):
-    posts = [
-        {
-            'title': 'my first post',
-            'description': 'this is my fav card',
-            'created_at': '2000-10-03'
-        },
-        {
-            'title': 'my second post',
-            'description': 'this is my other fav card',
-            'created_at': '2000-10-03'
-        }
-    ]
-
-    return render('request', 'posts.html', {'posts': posts})
+    posts = models.Post.objects.all().order_by('-created_at')
+    return render(request, 'posts.html', {'posts': posts})
 
 def addPost(request):
     return render('request', 'add_posts.html')
+
+def postPage(request, post_id):
+    post = models.Post.objects.get(id=post_id)
+    comments = models.Comment.objects.filter(post=post).order_by('created_at')
+    return render(request, 'post_page.html', {'post': post, 'comments': comments})

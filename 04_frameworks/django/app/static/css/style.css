@@ -1,4 +1,4 @@
- * {
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -6,45 +6,89 @@
     font-family: 'Courier New', Courier, monospace;
 }
 *::selection {
-    background-color: white;
+    appearance: none;
+    background-color: rgb(255, 255, 255);
     color: blue;
 }
 *:focus {
     outline: none;
 }
+
+a {
+    font-weight: 700;
+    text-decoration: none;
+}
+a:hover {
+    background-color: white;
+    color: blue;
+}
+
 body {
     padding: 10px;
     height: 100dvh;
     background: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 header {
-    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
+
 }
-.post-card {
-    border: 1px solid white;
-    margin-top: 10px;
+nav {
     padding: 10px;
 }
 
+.post-card {
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    opacity: 0.8;
+    border: 1px solid white;
+}
+
+.hover-block:hover {
+    transform: scale(1.02);
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+#hero {
+    text-align: center;
+}
+#posts {
+    text-align: center;
+    width: 400px;
+}
 #add-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
+
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 200px;
+    margin-top: 10px;
+    text-align: center;
 }
 
-input[type='text'] {
+input {
     width: 200px;
     background-color: blue;
     display: block;
     border: 1px solid white;
     padding: 5px;
 }
+
 textarea {
     display: block;
     border: 1px solid white;
@@ -54,13 +98,41 @@ textarea {
     background-color: blue;
     padding: 5px;
 }
+
 textarea::placeholder, input::placeholder {
     color: white;
 }
+
 button {
     background-color: blue;
     color: white;
     padding: 5px;
     font-weight: 700;
     border: 1px solid white;
+    cursor: pointer;
 }
+button:hover {
+    background-color: white;
+    color: blue;
+}
+
+#comments {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+#comments.desactive {
+    display: none;
+}
+
+#comment-form.desactive {
+    display: none;
+}
+div.helptext {
+    display: none;
+}
+
+
+

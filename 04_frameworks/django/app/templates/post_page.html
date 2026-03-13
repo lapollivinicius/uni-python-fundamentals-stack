@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+    {% block title %}
+        {{ post.title }}
+    {% endblock %}
+    {% block content %}
+    <section id="post-page" style="text-align: center; display: flex; flex-direction: column; gap: 10px;">
+        <h2>{{ post.title }}</h2>
+          <div style="text-align: left; border: 1px solid white; padding: 10px;" class="hover-block">
+            <h4>@{{ post.created_by }}</h4>
+            <p>{{ post.description }}</p>
+
+          </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+
+          <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <h2>comments</h2>
+            <a href="#" id="show-comments" style="width: 150px;">Add Comments</a>
+          </div>
+
+          <div id="comments" >
+            {% if comments.count == 0 %}
+              <p><em>No comments yet</em></p>
+            {% endif %}
+            {% for comment in comments %}
+              
+              <div style="text-align: left; border: 1px solid white; padding: 10px;" class="hover-block">
+                <h4>@{{ comment.created_by }}</h4>
+                <p>{{ comment.body }}</p>
+              </div>
+            {% endfor %}
+          </div>
+
+          <form id="comment-form" action="" method="POST" class="desactive">
+            {% csrf_token %}
+            <label for="comment">
+              Add Comment
+              <br>
+                <textarea name="comment" id="comment" placeholder="GTA VI is great" wrap="hard"></textarea>
+            </label>
+            <button type="submit">Add Comment</button>
+          </form>
+
+        </div>
+
+        <script>
+
+          const btnShow = document.querySelector('#show-comments');
+          const comments = document.querySelector('#comments');
+          const formComments = document.querySelector('#comment-form');
+
+          btnShow.addEventListener('click', (e) => {
+            e.preventDefault();
+            if(comments.classList.contains('desactive')) {
+              comments.classList.remove('desactive')
+              formComments.classList.add('desactive')
+              btnShow.textContent = 'add comments'
+            } else if (formComments.classList.contains('desactive')) {
+              formComments.classList.remove('desactive')
+              comments.classList.add('desactive')
+              btnShow.textContent = 'show comments'
+            }
+          });
+
+        </script>
+
+    </section>
+    {% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    <form action="/users/login/" method="post" style="display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center;">
+        <h1>Login</h1>
+        {% csrf_token %}
+        <!-- <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div> -->
+        {{form}}
+        <button type="submit">Login</button>
+        <span style="margin-top: 20px">If you don't have an account, <a href="{% url 'register' %}">Register</a></span>
+    </form>
+{% endblock %}
