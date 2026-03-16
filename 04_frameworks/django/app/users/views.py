@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 class MyUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -40,3 +40,7 @@ def auth_login(request):
     return render(request, 'login.html', {'form': form})
 
 #@mariejulie123
+
+def auth_logout(request):
+    logout(request)
+    return redirect('home')

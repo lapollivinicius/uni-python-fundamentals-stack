@@ -5,8 +5,8 @@
     {% block content %}
     <section id="post-page" style="text-align: center; display: flex; flex-direction: column; gap: 10px;">
         <h2>{{ post.title }}</h2>
-          <div style="text-align: left; border: 1px solid white; padding: 10px;" class="hover-block">
-            <h4>@{{ post.created_by }}</h4>
+          <div style="text-align: left; cursor: pointer;" class="hover-block">
+            <h4>@{{ post.created_by }} says:</h4>
             <p>{{ post.description }}</p>
 
           </div>
