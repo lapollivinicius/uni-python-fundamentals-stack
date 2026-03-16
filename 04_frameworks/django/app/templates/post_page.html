@@ -30,15 +30,19 @@
             {% endfor %}
           </div>
 
+
+
           <form id="comment-form" action="" method="POST" class="desactive">
             {% csrf_token %}
             <label for="comment">
               Add Comment
               <br>
-                <textarea name="comment" id="comment" placeholder="GTA VI is great" wrap="hard"></textarea>
+                <textarea name="comment" id="comment" placeholder="be gentle" wrap="hard"></textarea>
             </label>
             <button type="submit">Add Comment</button>
           </form>
+
+
 
         </div>
 

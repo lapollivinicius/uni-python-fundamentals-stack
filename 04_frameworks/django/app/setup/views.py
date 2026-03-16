@@ -5,5 +5,4 @@ from django.http import HttpRequest
 from django.shortcuts import render, redirect
 
 def home(request):
-    name = 'Jorge'
-    return render('request', 'index.html', {'name': name})
+    return render('request', 'home.html')

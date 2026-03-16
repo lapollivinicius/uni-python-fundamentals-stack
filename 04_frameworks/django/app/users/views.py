@@ -39,8 +39,10 @@ def auth_login(request):
 
     return render(request, 'login.html', {'form': form})
 
-#@mariejulie123
+# marieJ
+# @mariejulie123
 
 def auth_logout(request):
-    logout(request)
+    if request.method == 'POST':
+        logout(request)
     return redirect('home')
