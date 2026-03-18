@@ -4,7 +4,12 @@
     {% endblock %}
     {% block content %}
     <div id="hero">
-        <p>hi, dude!</p>
+        {%if user.is_authenticated %}
+                <p>hi, {{ user.username }}!</p>
+        {% else %}
+            <p>hi, dude!</p>
+        {% endif %}
+        
     </div>
     {% endblock %}
 

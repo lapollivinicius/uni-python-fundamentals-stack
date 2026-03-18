@@ -5,14 +5,15 @@
     {% block content %}
         <div id="add-form">
             <h2>Add your own post</h2>
-            <form action="" method="POST">
+            <form action="/posts/newpost/" method="POST">
+                {% csrf_token %} 
                 <label for="title">
                     <p>Title Post</p>
                     <input type="text" name="title" id="title" placeholder="GTA VI">
                 </label>
-                <label for="description">
+                <label for="body">
                     <p>Description Post</p>
-                    <textarea rows="5" cols="20" maxlength="100" wrap="hard" name="description" id="description" placeholder="GTA VI is great"></textarea>
+                    <textarea rows="5" cols="20" maxlength="100" wrap="hard" name="body" id="description" placeholder="GTA VI is great"></textarea>
                 </label>
                 <button type="submit">Send</button>
             </form>

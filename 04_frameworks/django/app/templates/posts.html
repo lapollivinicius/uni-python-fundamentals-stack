@@ -17,8 +17,7 @@
                 <a href="{% url 'post_page' post.id %}">
                     <h3>{{ post.title }}</h3>
                     <p style="font-size: 0.8em; opacity: 0.5; margin-bottom: 5px;">{{ post.created_by }}</p>
-                    <p><em>{{ post.subject }}</em></p>
-                    <p class="description">{{ post.description }}</p>
+                    <p class="description">{{ post.body }}</p>
                 </a>
             </div>
         {% endfor %}

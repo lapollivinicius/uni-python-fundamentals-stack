@@ -43,6 +43,6 @@ def auth_login(request):
 # @mariejulie123
 
 def auth_logout(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         logout(request)
     return redirect('home')

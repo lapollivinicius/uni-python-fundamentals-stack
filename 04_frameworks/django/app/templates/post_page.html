@@ -4,10 +4,13 @@
     {% endblock %}
     {% block content %}
     <section id="post-page" style="text-align: center; display: flex; flex-direction: column; gap: 10px;">
+
+        <a href="{% url 'posts' %}"> ← back</a>
+
         <h2>{{ post.title }}</h2>
           <div style="text-align: left; cursor: pointer;" class="hover-block">
             <h4>@{{ post.created_by }} says:</h4>
-            <p>{{ post.description }}</p>
+            <p>{{ post.body }}</p>
 
           </div>
         <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
@@ -42,7 +45,7 @@
             <button type="submit">Add Comment</button>
           </form>
 
-
+          
 
         </div>
 
