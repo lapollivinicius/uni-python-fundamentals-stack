@@ -4,7 +4,6 @@
     margin: 0;
     color: white;
     font-family: 'Courier New', Courier, monospace;
-    border: 1px solid white;
 }
 *::selection {
     appearance: none;
@@ -52,6 +51,7 @@ nav {
     cursor: pointer;
     opacity: 0.8;
     border: 1px solid white;
+    position: relative;
 }
 
 .hover-block:hover {
@@ -136,6 +136,18 @@ button:hover {
 
 #comment-form.desactive {
     display: none;
+}
+.comments {
+    text-align: left; 
+    border: 1px solid white; 
+    padding: 10px;
+    position: relative;
+}
+.deletecomment {
+    position: absolute;
+    margin: 5px;
+    top: 0;
+    right: 0;
 }
 div.helptext {
     display: none;

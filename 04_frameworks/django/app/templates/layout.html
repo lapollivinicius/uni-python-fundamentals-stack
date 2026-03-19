@@ -13,7 +13,11 @@
 </head>
 <body>
     <header>
-        <h2>SAYS</h2>
+        {%if user.is_authenticated %}
+                <h2>SAYS, {{ user.username }}!</h2>
+        {% else %}
+            <h2>SAYS!</h2>
+        {% endif %}
         <nav style="display: flex; gap: 10px;">
             <a href="{% url 'home' %}">home</a>
             <a href="{% url 'posts' %}">posts</a>

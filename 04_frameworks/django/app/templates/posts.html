@@ -13,12 +13,20 @@
         {% endif %}
         {% for post in posts %}
             <div class="post-card hover-block">
-                
+                {% if post.created_by == request.user %} <p style='opacity: 0.3'><em>Yours</em></p>{% endif %}
                 <a href="{% url 'post_page' post.id %}">
+                    
                     <h3>{{ post.title }}</h3>
                     <p style="font-size: 0.8em; opacity: 0.5; margin-bottom: 5px;">{{ post.created_by }}</p>
                     <p class="description">{{ post.body }}</p>
                 </a>
+
+                {% if post.created_by == request.user %}
+                    <form action={% url 'deletepost' post.id %} method='POST'>
+                        {% csrf_token %}
+                        <button class='deletecomment' style="outline: none; border: none">x</button>
+                    </form>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

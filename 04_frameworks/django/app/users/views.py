@@ -42,6 +42,8 @@ def auth_login(request):
 # marieJ
 # @mariejulie123
 
+# 
+
 def auth_logout(request):
     if request.method == 'GET':
         logout(request)

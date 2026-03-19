@@ -26,18 +26,27 @@
             {% endif %}
             {% for comment in comments %}
               
-              <div style="text-align: left; border: 1px solid white; padding: 10px;" class="hover-block">
-                <h4>@{{ comment.created_by }}</h4>
-                <p>{{ comment.body }}</p>
-              </div>
+                <div class="comments hover-block">
+                  {% if comment.created_by == request.user %} <p style='opacity: 0.3'><em>Yours</em></p>{% endif %}
+                  <h4>@{{ comment.created_by }}</h4>
+                  <p>{{ comment.body }}</p>
+
+                  {% if comment.created_by == request.user %}
+                    <form action={% url 'deletecomment' comment.id %} method='POST'>
+                      {% csrf_token %}
+                      <button class='deletecomment' style="outline: none; border: none">x</button>
+                    </form>
+                  {% endif %}
+
+                </div>
+              
             {% endfor %}
           </div>
 
-
-
-          <form id="comment-form" action="" method="POST" class="desactive">
+          <form id="comment-form" action="/posts/addcomment/" method="POST" class="desactive">
             {% csrf_token %}
             <label for="comment">
+              <input type="hidden" name="post_id" value="{{ post.id }}">
               Add Comment
               <br>
                 <textarea name="comment" id="comment" placeholder="be gentle" wrap="hard"></textarea>
