@@ -22,11 +22,12 @@
                 </a>
 
                 {% if post.created_by == request.user %}
-                    <form action={% url 'deletepost' post.id %} method='POST'>
+                    <form action="{% url 'deletepost' post.id %}" method="POST">
                         {% csrf_token %}
-                        <button class='deletecomment' style="outline: none; border: none">x</button>
+                        <button class='delete' style="outline: none; border: none">x</button>
                     </form>
                 {% endif %}
+
             </div>
         {% endfor %}
     </div>

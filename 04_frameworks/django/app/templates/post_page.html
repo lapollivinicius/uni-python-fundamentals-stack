@@ -3,6 +3,9 @@
         {{ post.title }}
     {% endblock %}
     {% block content %}
+
+    
+
     <section id="post-page" style="text-align: center; display: flex; flex-direction: column; gap: 10px;">
 
         <a href="{% url 'posts' %}"> ← back</a>
@@ -15,46 +18,59 @@
           </div>
         <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
 
-          <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <h2>comments</h2>
-            <a href="#" id="show-comments" style="width: 150px;">Add Comments</a>
-          </div>
+          {% if user.is_authenticated %}
 
-          <div id="comments" >
-            {% if comments.count == 0 %}
-              <p><em>No comments yet</em></p>
-            {% endif %}
-            {% for comment in comments %}
-              
-                <div class="comments hover-block">
-                  {% if comment.created_by == request.user %} <p style='opacity: 0.3'><em>Yours</em></p>{% endif %}
-                  <h4>@{{ comment.created_by }}</h4>
-                  <p>{{ comment.body }}</p>
+            <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <h2>comments</h2>
+              <a href="#" id="show-comments" style="width: 150px;">Add Comments</a>
+            </div>
 
-                  {% if comment.created_by == request.user %}
-                    <form action={% url 'deletecomment' comment.id %} method='POST'>
-                      {% csrf_token %}
-                      <button class='deletecomment' style="outline: none; border: none">x</button>
-                    </form>
-                  {% endif %}
+            <div id="comments" >
+            
+              {% if comments.count == 0 %}
+                <p><em>No comments yet</em></p>
+              {% endif %}
 
-                </div>
-              
-            {% endfor %}
-          </div>
+              {% for comment in comments %}
+                
+                  <div class="comments hover-block">
+                    {% if comment.created_by == request.user %} <p style='opacity: 0.3'><em>Yours</em></p>{% endif %}
 
-          <form id="comment-form" action="/posts/addcomment/" method="POST" class="desactive">
-            {% csrf_token %}
-            <label for="comment">
-              <input type="hidden" name="post_id" value="{{ post.id }}">
-              Add Comment
-              <br>
-                <textarea name="comment" id="comment" placeholder="be gentle" wrap="hard"></textarea>
-            </label>
-            <button type="submit">Add Comment</button>
-          </form>
+                    <h4>@{{ comment.created_by }}</h4>
+                    <p>{{ comment.body }}</p>
 
-          
+                    {% if comment.created_by == request.user %}
+                      <form action="{% url 'deletecomment' comment.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class='delete' style="outline: none; border: none">x</button>
+                      </form>
+                    {% endif %}
+
+                  </div>
+  
+              {% endfor %}
+             
+
+            </div>
+
+            <form id="comment-form" action="/posts/addcomment/" method="POST" class="desactive">
+              {% csrf_token %}
+              <label for="comment">
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                Add Comment
+                <br>
+                  <textarea name="comment" id="comment" placeholder="be gentle" wrap="hard"></textarea>
+              </label>
+              <button type="submit">Add Comment</button>
+            </form>
+
+          {% else %}
+
+              <div style="margin-top: 10px;">
+                <p><em><strong>sign in to see comments</strong></em></p>
+              </div>
+
+          {% endif %}
 
         </div>
 
